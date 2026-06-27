@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Contact Us"
+  description="Get in touch with HillFord Partners to discuss outsourced accounting, bookkeeping and CA services. Book a consultation today."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Let’s talk about your finance function"
+    subtitle="Send us an enquiry or book a consultation call. We respond within one business day."
+  />
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-5">
+      <!-- Enquiry form -->
+      <div class="lg:col-span-3">
+        <h2 class="text-2xl text-forest">Send an enquiry</h2>
+        <form
+          class="mt-6 grid gap-5"
+          data-enquiry-form
+          action="#"
+          method="POST"
+          data-formspree-id={site.formspreeId}
+          novalidate
+        >
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="mb-1 block text-sm font-medium text-charcoal">Name <span class="text-brass">*</span></label>
+              <input id="name" name="name" type="text" required class="w-full rounded-lg border border-brass/30 bg-white px-4 py-3 focus:border-forest focus:outline-none" />
+            </div>
+            <div>
+              <label for="email" class="mb-1 block text-sm font-medium text-charcoal">Email <span class="text-brass">*</span></label>
+              <input id="email" name="email" type="email" required class="w-full rounded-lg border border-brass/30 bg-white px-4 py-3 focus:border-forest focus:outline-none" />
+            </div>
+          </div>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="phone" class="mb-1 block text-sm font-medium text-charcoal">Phone</label>
+              <input id="phone" name="phone" type="tel" class="w-full rounded-lg border border-brass/30 bg-white px-4 py-3 focus:border-forest focus:outline-none" />
+            </div>
+            <div>
+              <label for="company" class="mb-1 block text-sm font-medium text-charcoal">Company</label>
+              <input id="company" name="company" type="text" class="w-full rounded-lg border border-brass/30 bg-white px-4 py-3 focus:border-forest focus:outline-none" />
+            </div>
+          </div>
+          <div>
+            <label for="persona" class="mb-1 block text-sm font-medium text-charcoal">I am a…</label>
+            <select id="persona" name="persona" class="w-full rounded-lg border border-brass/30 bg-white px-4 py-3 focus:border-forest focus:outline-none">
+              <option value="firm">Accounting / CPA firm</option>
+              <option value="business">Business / SME</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="message" class="mb-1 block text-sm font-medium text-charcoal">Message <span class="text-brass">*</span></label>
+            <textarea id="message" name="message" rows="5" required class="w-full rounded-lg border border-brass/30 bg-white px-4 py-3 focus:border-forest focus:outline-none"></textarea>
+          </div>
+          <!-- Honeypot (spam protection) -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <label class="flex items-start gap-3 text-sm text-stone">
+            <input type="checkbox" name="consent" required class="mt-1 h-4 w-4 rounded border-brass/40" />
+            <span>I consent to HillFord Partners contacting me about my enquiry. <span class="text-brass">*</span></span>
+          </label>
+          <button type="submit" class="justify-self-start rounded-full bg-forest px-7 py-3 font-semibold text-cream transition-colors hover:bg-forest-light">
+            Send enquiry
+          </button>
+          <p data-form-note class="hidden rounded-lg bg-forest/5 px-4 py-3 text-sm text-forest"></p>
+        </form>
+      </div>
+
+      <!-- Details + scheduling -->
+      <aside class="lg:col-span-2">
+        <div class="rounded-2xl border border-brass/20 bg-white p-6">
+          <h2 class="text-xl text-forest">Book a call</h2>
+          <p class="mt-2 text-sm text-stone">Prefer to talk? Schedule a consultation at a time that suits you.</p>
+          <a href={site.calendlyUrl} class="mt-4 block rounded-full bg-brass px-5 py-3 text-center text-sm font-semibold text-forest transition-colors hover:bg-brass-light">
+            Schedule a consultation
+          </a>
+        </div>
+
+        <dl class="mt-6 space-y-4 rounded-2xl border border-brass/20 bg-white p-6 text-sm">
+          <div>
+            <dt class="font-semibold text-forest">Email</dt>
+            <dd class="mt-1"><a href={`mailto:${site.email}`} class="text-stone hover:text-brass">{site.email}</a></dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-forest">Location</dt>
+            <dd class="mt-1 text-stone">{site.location}</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-forest">Response time</dt>
+            <dd class="mt-1 text-stone">{site.responseTime}</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    // Contact form — placeholder phase: no backend wired yet.
+    // When the Formspree ID is set, swap this for a real POST to https://formspree.io/f/<id>.
+    const form = document.querySelector<HTMLFormElement>('[data-enquiry-form]');
+    const note = document.querySelector<HTMLParagraphElement>('[data-form-note]');
+    const email = 'hello@hillfordpartners.com';
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const id = form.dataset.formspreeId;
+      if (id && id !== 'PLACEHOLDER') {
+        form.removeEventListener('submit', () => {});
+        form.action = `https://formspree.io/f/${id}`;
+        form.submit();
+        return;
+      }
+      if (note) {
+        note.textContent = `Thanks for reaching out! Online enquiries are launching shortly — please email us at ${email} in the meantime and we’ll respond within one business day.`;
+        note.classList.remove('hidden');
+      }
+      form.reset();
+    });
+  </script>
+</BaseLayout>

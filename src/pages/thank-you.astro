@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Thank You" description="Thanks for getting in touch with HillFord Partners.">
+  <section class="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
+    <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-forest text-cream">
+      <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="m5 12 4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <h1 class="text-4xl text-forest">Thank you</h1>
+    <p class="mt-4 text-lg text-stone">
+      We’ve received your message and will be in touch within one business day. We appreciate you reaching out to
+      HillFord Partners.
+    </p>
+    <a href="/" class="mt-8 rounded-full bg-forest px-7 py-3 font-semibold text-cream transition-colors hover:bg-forest-light">
+      Back to home
+    </a>
+  </section>
+</BaseLayout>

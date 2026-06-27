@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import TeamMember from '../components/TeamMember.astro';
+import CTABand from '../components/CTABand.astro';
+import { team } from '../data/site';
+---
+
+<BaseLayout
+  title="Our Team"
+  description="Meet the chartered accountants leading HillFord Partners — with audit, advisory and reporting experience from leading global firms."
+>
+  <PageHero
+    eyebrow="Our Team"
+    title="Chartered accountants you can trust with your numbers"
+    subtitle="Our leadership brings audit, assurance, reporting and advisory expertise from Big Four and multinational firms."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {team.map((member) => <TeamMember member={member} />)}
+    </div>
+    <p class="mt-8 text-center text-xs text-stone/60">Leadership photographs to be added shortly.</p>
+  </section>
+
+  <CTABand
+    heading="Work with our team"
+    body="Book a consultation to discuss how HillFord’s chartered accountants can support your firm or business."
+  />
+</BaseLayout>

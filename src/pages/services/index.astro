@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTABand from '../../components/CTABand.astro';
+import { services } from '../../data/site';
+---
+
+<BaseLayout
+  title="Services"
+  description="Outsourced accounting, bookkeeping, audit support, business advisory, payroll, invoicing and accounting software solutions."
+>
+  <PageHero
+    eyebrow="Our Services"
+    title="The full finance function, delivered by chartered accountants"
+    subtitle="Seven service lines spanning day-to-day bookkeeping to strategic advisory. Choose what you need today and scale as you grow."
+  />
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+  </section>
+
+  <CTABand
+    heading="Not sure where to start?"
+    body="Tell us about your finance function and we’ll recommend the right mix of services for your firm or business."
+  />
+</BaseLayout>

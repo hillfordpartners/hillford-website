@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Privacy Policy" description="How HillFord Partners collects, uses and protects your personal information.">
+  <PageHero eyebrow="Legal" title="Privacy Policy" />
+
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="rounded-xl border border-dashed border-brass/40 bg-white p-6 text-sm text-stone">
+      <strong class="text-forest">Draft placeholder:</strong> this policy is a template pending client and legal review before launch.
+    </div>
+
+    <div class="mt-8 space-y-6 leading-relaxed text-stone">
+      <p>
+        HillFord Partners LLP (“HillFord”, “we”, “us”) is committed to protecting your privacy. This policy explains
+        what information we collect, how we use it, and the choices available to you.
+      </p>
+      <div>
+        <h2 class="text-xl text-forest">Information we collect</h2>
+        <p class="mt-2">
+          We collect information you provide directly — such as your name, email, phone, company and message — when you
+          submit an enquiry or contact us.
+        </p>
+      </div>
+      <div>
+        <h2 class="text-xl text-forest">How we use information</h2>
+        <p class="mt-2">
+          We use your information to respond to enquiries, provide our services, and communicate with you about your
+          engagement. We do not sell your personal information.
+        </p>
+      </div>
+      <div>
+        <h2 class="text-xl text-forest">Data security</h2>
+        <p class="mt-2">
+          We apply appropriate safeguards to protect personal and financial information against unauthorised access,
+          disclosure or loss.
+        </p>
+      </div>
+      <div>
+        <h2 class="text-xl text-forest">Contact</h2>
+        <p class="mt-2">
+          For any privacy questions, contact us at <a href={`mailto:${site.email}`} class="font-semibold text-brass hover:text-forest">{site.email}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABand from '../components/CTABand.astro';
+
+const approach = [
+  {
+    title: 'Governance first',
+    body: 'Clear engagement structures, documented processes and accountability at every stage.',
+  },
+  {
+    title: 'Data integrity',
+    body: 'Reconciled, reviewed and standards-aligned work you can rely on for decisions and audits.',
+  },
+  {
+    title: 'Confidentiality',
+    body: 'Secure handling of sensitive financial information, with strict access controls.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Us"
+  description="HillFord Partners LLP is an outsourced accounting firm combining Big Four and multinational pedigree with a global delivery model."
+>
+  <PageHero
+    eyebrow="About HillFord"
+    title="A dependable finance back-office for firms and businesses worldwide"
+    subtitle="HillFord Partners LLP brings together chartered accountants with Big Four and multinational experience to deliver accurate, secure and scalable outsourced finance."
+  />
+
+  <!-- Overview -->
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2 class="text-3xl text-forest">Who we are</h2>
+    <p class="mt-4 text-lg leading-relaxed text-stone">
+      HillFord is a professional services firm providing outsourced accounting, bookkeeping and chartered-accountancy
+      services to a global market. Operating on a global delivery model — an India-based professional team serving
+      clients abroad — we act as a seamless extension of the firms and businesses we work with.
+    </p>
+    <p class="mt-4 text-lg leading-relaxed text-stone">
+      Our leadership combines Big Four and multinational pedigree across audit, assurance, reporting and advisory,
+      giving clients access to senior expertise without the cost and complexity of building it in-house.
+    </p>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="bg-white">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 md:grid-cols-2 lg:px-8">
+      <div class="rounded-2xl border border-brass/20 bg-cream p-8">
+        <h2 class="text-2xl text-forest">Our mission</h2>
+        <p class="mt-4 leading-relaxed text-stone">
+          To give firms and businesses worldwide a dependable finance back-office — delivering accurate, compliant and
+          confidential accounting that frees clients to focus on growth.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-brass/20 bg-cream p-8">
+        <h2 class="text-2xl text-forest">Our vision</h2>
+        <p class="mt-4 leading-relaxed text-stone">
+          To be the outsourcing partner of choice for accounting firms and businesses globally, recognised for
+          technical excellence, integrity and trusted data stewardship.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2 class="text-3xl text-forest">Our approach</h2>
+    <p class="mt-3 max-w-2xl text-stone">How we run engagements — and why clients trust us with their numbers.</p>
+    <div class="mt-10 grid gap-6 sm:grid-cols-3">
+      {
+        approach.map((item) => (
+          <div class="rounded-xl border border-brass/20 bg-white p-6">
+            <div class="mb-3 h-1 w-10 rounded bg-brass" />
+            <h3 class="text-lg text-forest">{item.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-stone">{item.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Standards & data security -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+      <h2 class="text-3xl text-forest">Standards &amp; data security</h2>
+      <p class="mt-4 text-lg leading-relaxed text-stone">
+        Our work is aligned with international standards including IFRS and ISA, and reviewed for technical accuracy at
+        every step. We are committed to the secure handling of sensitive financial information — applying strict
+        confidentiality, access controls and governance across every engagement.
+      </p>
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>
