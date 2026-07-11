@@ -17,17 +17,17 @@ const isActive = (href: string) =>
 
 <header
   data-header
-  class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-midnight/80 backdrop-blur-md transition-transform duration-500 ease-out will-change-transform translate-y-0"
+  class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-midnight/80 backdrop-blur-md transition-transform duration-500 ease-out will-change-transform"
 >
   <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2 shrink-0" aria-label={`${site.name} home`}>
       <img
-        src="/images/logo.png"
+        src="/images/Logo2.png"
         alt={`${site.legalName} logo`}
-        class="h-10 w-auto transition-opacity duration-300 hover:opacity-85"
-        width="160"
-        height="40"
+        class="h-10 w-auto transition-opacity duration-300 hover:opacity-85 sm:h-12"
+        width="200"
+        height="70"
       />
     </a>
 
@@ -68,7 +68,7 @@ const isActive = (href: string) =>
                 class="group relative inline-block px-3 py-2 text-sm font-medium"
               >
                 <span class="relative block h-5 overflow-hidden">
-                  <span class="flex flex-col transition-transform duration-500 cubic-bezier-[0.17,0.84,0.44,1] group-hover:-translate-y-1/2">
+                  <span class="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.17,0.84,0.44,1)] group-hover:-translate-y-1/2">
                     <span class:list={[
                       'block h-5 leading-5 transition-colors duration-300',
                       isActive(link.href) ? 'text-brass' : 'text-cream/70 group-hover:text-brass-light'
@@ -82,7 +82,7 @@ const isActive = (href: string) =>
                 </span>
                 <!-- Underline effect -->
                 <span class:list={[
-                  'absolute bottom-1 left-3 right-3 h-[1.5px] bg-brass transition-transform duration-500 cubic-bezier-[0.17,0.84,0.44,1]',
+                  'absolute bottom-1 left-3 right-3 h-[1.5px] bg-brass transition-transform duration-500 ease-[cubic-bezier(0.17,0.84,0.44,1)]',
                   isActive(link.href) ? 'scale-x-100' : 'scale-x-0 origin-right group-hover:scale-x-100 group-hover:origin-left'
                 ]}></span>
               </a>
@@ -186,19 +186,11 @@ const isActive = (href: string) =>
       lastScrollY = currentScrollY;
     }, { passive: true });
 
-    // Track mouse near top edge to slide header down
+    // Track mouse near top edge to reveal a hidden header
     window.addEventListener('mousemove', (e) => {
-      if (e.clientY < 60) {
-        if (isHidden) {
-          header.classList.remove('-translate-y-full');
-          isHidden = false;
-        }
-      } else if (window.scrollY > 100 && e.clientY > 120) {
-        // If cursor exits header area and we are scrolled down, hide it back
-        if (!isHidden) {
-          header.classList.add('-translate-y-full');
-          isHidden = true;
-        }
+      if (e.clientY < 60 && isHidden) {
+        header.classList.remove('-translate-y-full');
+        isHidden = false;
       }
     });
   }

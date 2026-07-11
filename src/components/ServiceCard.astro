@@ -2,8 +2,9 @@
 import type { Service } from '../data/site';
 interface Props {
   service: Service;
+  dark?: boolean;
 }
-const { service } = Astro.props;
+const { service, dark = false } = Astro.props;
 
 // Unique icon path per service slug
 const icons: Record<string, string> = {
@@ -28,20 +29,28 @@ const iconPath = icons[service.slug] ?? 'M4 19h16M7 16V8m5 8V5m5 11v-6';
 <a
   href={`/services/${service.slug}`}
   id={`service-card-${service.slug}`}
-  class="group flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brass/25 hover:bg-white/[0.07] hover:shadow-[0_10px_40px_rgba(168,130,60,0.1)]"
+  class:list={[
+    'group flex flex-col rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1',
+    dark
+      ? 'border-white/[0.08] bg-white/[0.04] backdrop-blur-sm hover:border-brass/25 hover:bg-white/[0.07] hover:shadow-[0_10px_40px_rgba(168,130,60,0.1)]'
+      : 'border-brass/20 bg-white hover:border-brass hover:shadow-lg',
+  ]}
 >
   <!-- Icon -->
-  <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.06] text-brass-light transition-colors duration-300 group-hover:bg-white/[0.10] group-hover:text-brass">
+  <div class:list={[
+    'mb-5 flex h-11 w-11 items-center justify-center rounded-xl transition-colors duration-300',
+    dark ? 'bg-white/[0.06] text-brass-light group-hover:bg-white/[0.10] group-hover:text-brass' : 'bg-forest/10 text-forest',
+  ]}>
     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d={iconPath} stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   </div>
 
   <!-- Title -->
-  <h3 class="font-serif text-[1.0625rem] font-semibold text-cream">{service.title}</h3>
+  <h3 class:list={['font-serif text-[1.0625rem] font-semibold', dark ? 'text-cream' : 'text-forest']}>{service.title}</h3>
 
   <!-- Summary -->
-  <p class="mt-2 flex-1 text-sm leading-relaxed text-cream/60">{service.summary}</p>
+  <p class:list={['mt-2 flex-1 text-sm leading-relaxed', dark ? 'text-cream/60' : 'text-stone']}>{service.summary}</p>
 
   <!-- CTA -->
   <span class="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brass transition-colors duration-300 group-hover:text-brass-light">

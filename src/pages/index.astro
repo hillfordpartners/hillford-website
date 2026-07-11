@@ -3,12 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import TeamMember from '../components/TeamMember.astro';
 import {
+  site,
   services,
   team,
   valuePillars,
   stats,
-  testimonials, 
+  testimonials,
   softwarePartners,
+  whyOutsource,
 } from '../data/site';
 ---
 
@@ -104,6 +106,11 @@ import {
           <img
             src="/images/hero-3d.png"
             alt="HillFord 3D Digital Asset Symbol"
+            width="1024"
+            height="1024"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
             class="animate-float relative z-10 w-full max-w-[340px] object-contain sm:max-w-[380px] lg:max-w-full"
           />
         </div>
@@ -234,7 +241,7 @@ import {
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service, i) => (
           <div class="reveal-up" style={`animation-delay: ${(i % 3) * 80}ms`}>
-            <ServiceCard service={service} />
+            <ServiceCard service={service} dark />
           </div>
         ))}
       </div>
@@ -362,7 +369,7 @@ import {
       <div class="grid gap-6 sm:grid-cols-3">
         {team.map((member, i) => (
           <div class="reveal-up" style={`animation-delay: ${i * 90}ms`}>
-            <TeamMember member={member} teaser />
+            <TeamMember member={member} teaser dark />
           </div>
         ))}
       </div>
@@ -522,7 +529,7 @@ import {
         <!-- Response promise pill -->
         <div class="mt-8 flex items-center gap-3">
           <div class="h-px w-8 bg-brass/40"></div>
-          <span class="text-sm text-cream/45">We respond within 1 business day.</span>
+          <span class="text-sm text-cream/45">{site.responseTime}</span>
         </div>
       </div>
 
