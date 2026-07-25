@@ -15,7 +15,6 @@ const { service } = Astro.props;
 const others = services.filter((s) => s.slug !== service.slug).slice(0, 3);
 const featured = service.included.slice(0, 2);
 const rest = service.included.slice(2);
-const overview = `Our ${service.title.toLowerCase()} service gives you accurate, standards-aligned support delivered by a chartered team. We work as an extension of your firm or finance function — handling the detail so you can focus on what matters.`;
 
 const statIcons = [
   'M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m6-4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm6 0a4 4 0 1 0-3.75-5.5',
@@ -58,6 +57,17 @@ const statIcons = [
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
+       OVERVIEW  ·  White bg, real service copy
+       ══════════════════════════════════════════════════════════ -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
+      <div class="space-y-5 text-lg leading-relaxed text-charcoal">
+        {service.description.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
        WHAT'S INCLUDED  ·  White bg, featured items + checklist
        ══════════════════════════════════════════════════════════ -->
   <section class="border-t border-navy/10 bg-white">
@@ -74,7 +84,6 @@ const statIcons = [
             </div>
             <div>
               <h2 class="font-serif text-2xl text-navy">{item}</h2>
-              <p class="mt-4 leading-relaxed text-stone">{overview}</p>
               <a href="/contact" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brass transition-colors hover:text-navy">
                 Get a proposal
                 <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
