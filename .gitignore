@@ -34,3 +34,6 @@ pnpm-debug.log*
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+# client-supplied source docs (kept local for reference, not part of the repo)
+*.docx
