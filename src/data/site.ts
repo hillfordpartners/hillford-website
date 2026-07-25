@@ -7,16 +7,18 @@ export const site = {
   domain: 'hillfordpartners.com',
   url: 'https://hillfordpartners.com',
   tagline: 'Outsourced accounting, bookkeeping & CA services for firms and businesses worldwide.',
-  email: import.meta.env.PUBLIC_CONTACT_EMAIL ?? 'hello@hillfordpartners.com',
+  email: import.meta.env.PUBLIC_CONTACT_EMAIL ?? 'Contact@hillfordpartners.com',
   calendlyUrl: import.meta.env.PUBLIC_CALENDLY_URL ?? '#',
   formspreeId: import.meta.env.PUBLIC_FORMSPREE_ID ?? 'PLACEHOLDER',
-  location: 'India · Serving clients globally',
+  location: 'Dubai, UAE & India · Serving clients globally',
   responseTime: 'We respond within 1 business day.',
 };
 
 export interface Service {
   slug: string;
   title: string;
+  /** Short punchy line shown under the title on the service detail page. */
+  tagline: string;
   summary: string;
   /** Full overview paragraphs for the service detail page. */
   description: string[];
@@ -28,6 +30,7 @@ export const services: Service[] = [
   {
     slug: 'accounting',
     title: 'Accounting',
+    tagline: 'Transforming Financial Data into Strategic Business Insight.',
     summary:
       'Reliable financial information, meaningful insights and comprehensive reporting to support growth and long-term success.',
     description: [
@@ -51,6 +54,7 @@ export const services: Service[] = [
   {
     slug: 'bookkeeping',
     title: 'Bookkeeping',
+    tagline: 'Accurate Records. Stronger Financial Foundations.',
     summary:
       'Accurate, organised day-to-day financial records that give you a clear, up-to-date picture of your business finances.',
     description: [
@@ -74,6 +78,7 @@ export const services: Service[] = [
   {
     slug: 'audit-support',
     title: 'Audit Support',
+    tagline: 'Ensuring Audit Readiness with Confidence and Compliance.',
     summary:
       'Professional, reliable and secure support across the entire audit lifecycle — audit readiness, compliance and high-quality financial reporting.',
     description: [
@@ -98,6 +103,7 @@ export const services: Service[] = [
   {
     slug: 'business-advisory',
     title: 'Business Advisory',
+    tagline: 'Strategic Advice That Drives Sustainable Growth.',
     summary: 'Strategic guidance that enhances performance, strengthens financial management and supports informed decision-making.',
     description: [
       'Our Business Advisory Services help organizations navigate challenges, identify opportunities, and achieve long-term growth. We work closely with business owners, management teams, and stakeholders to provide strategic guidance that enhances performance, strengthens financial management, and supports informed decision-making.',
@@ -118,6 +124,7 @@ export const services: Service[] = [
   {
     slug: 'payroll',
     title: 'Payroll',
+    tagline: 'Accurate Payroll. Timely Compliance. Complete Confidence.',
     summary: 'End-to-end payroll administration — accurate, on time and fully compliant.',
     description: [
       'Managing payroll accurately and efficiently is essential for employee satisfaction, compliance, and operational effectiveness. Our Payroll Services provide end-to-end payroll administration, ensuring employees are paid correctly and on time while meeting all applicable regulatory requirements.',
@@ -136,6 +143,7 @@ export const services: Service[] = [
   {
     slug: 'invoicing',
     title: 'Invoicing',
+    tagline: 'Streamlining Billing to Strengthen Cash Flow.',
     summary: 'Streamlined billing that improves cash flow visibility and collection efficiency.',
     description: [
       'Effective invoicing plays a vital role in maintaining healthy cash flow and improving collection efficiency. Our Invoicing Services streamline the billing process by ensuring invoices are prepared, issued, and monitored accurately and on time.',
@@ -154,6 +162,7 @@ export const services: Service[] = [
   {
     slug: 'software-solutions',
     title: 'Accounting Software Solutions',
+    tagline: 'Smart Accounting Technology for Smarter Businesses.',
     summary: 'Select, implement and get the most from the accounting systems that support your business.',
     description: [
       'Modern accounting technology can significantly improve efficiency, accuracy, and financial visibility. Our Accounting Software Solutions help businesses select, implement, optimize, and manage accounting systems that support their operational and financial objectives.',
@@ -207,7 +216,7 @@ export const team: TeamMember[] = [
 export const valuePillars = [
   {
     title: 'Accuracy & Compliance',
-    body: 'Work delivered to IFRS / ISA standards, reviewed for precision at every step.',
+    body: 'Work aligned with IFRS and ISA standards, reviewed for precision at every step.',
   },
   {
     title: 'Data Security & Confidentiality',
@@ -223,9 +232,10 @@ export const valuePillars = [
   },
 ];
 
-// Placeholder figures — TODO: confirm with client before launch.
+// Years Combined Experience confirmed by client. Other figures still
+// placeholder — TODO: confirm with client before launch.
 export const stats = [
-  { value: 25, suffix: '+', label: 'Years Combined Experience' },
+  { value: 50, suffix: '+', label: 'Years Combined Experience' },
   { value: 8, suffix: '', label: 'Chartered Accountants' },
   { value: 50, suffix: '+', label: 'Industries Served' },
   { value: 1000, suffix: '+', label: 'Client Engagements' },
