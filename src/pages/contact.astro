@@ -143,12 +143,11 @@ import { site, softwarePartners } from '../data/site';
     </div>
   </section>
 
-  <script>
+  <script define:vars={{ email: site.email }}>
     // Contact form — placeholder phase: no backend wired yet.
     // When the Formspree ID is set, swap this for a real POST to https://formspree.io/f/<id>.
-    const form = document.querySelector<HTMLFormElement>('[data-enquiry-form]');
-    const note = document.querySelector<HTMLParagraphElement>('[data-form-note]');
-    const email = 'hello@hillfordpartners.com';
+    const form = document.querySelector('[data-enquiry-form]');
+    const note = document.querySelector('[data-form-note]');
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
