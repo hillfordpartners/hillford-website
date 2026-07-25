@@ -5,20 +5,16 @@
    ───────────────────────────────────────────────────── */
 @theme {
   /* Core brand palette */
-  --color-forest:        #14452f;
-  --color-forest-light:  #1d5f42;
-  --color-forest-dark:   #0e3322;
-  --color-brass:         #a8823c;
-  --color-brass-light:   #c39e57;
+  --color-brass:         #d4a84b;
+  --color-brass-light:   #e3c179;
   --color-cream:         #f8f7f4;
   --color-charcoal:      #1c1c1c;
   --color-stone:         #6b6b66;
 
-  /* Dark section palette */
-  --color-midnight:      #080d0b;
-  --color-midnight-2:    #0e1611;
-  --color-surface:       #131c18;
-  --color-surface-raised:#1a2520;
+  /* Dark section palette (navy — Figma redesign) */
+  --color-navy:          #1b2a4a;
+  --color-navy-deep:     #132d52;
+  --color-mist:          #f4f8ff;
 
   /* Typography */
   --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
@@ -27,25 +23,29 @@
 
 /* ─────────────────────────────────────────────────────
    Base resets
+   (layered so Tailwind utility classes, e.g. text-cream on
+   dark sections, can override these defaults)
    ───────────────────────────────────────────────────── */
-html {
-  scroll-behavior: smooth;
-  font-family: var(--font-sans);
-  color: var(--color-cream);
-  background-color: var(--color-midnight);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background-color: var(--color-cream);
+  }
 
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  line-height: 1.15;
-  color: var(--color-cream);
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--color-charcoal);
+  }
 }
 
 /* ─────────────────────────────────────────────────────
@@ -82,16 +82,6 @@ h1, h2, h3, h4 {
 }
 .reveal.is-visible {
   animation: fade-up 0.6s ease-out forwards;
-}
-
-/* ─────────────────────────────────────────────────────
-   Glassmorphism utilities
-   ───────────────────────────────────────────────────── */
-.glass-dark {
-  background: rgba(20, 29, 25, 0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(168, 130, 60, 0.14);
 }
 
 /* ─────────────────────────────────────────────────────

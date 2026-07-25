@@ -26,7 +26,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/images/logo-Only.png" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{fullTitle}</title>
@@ -53,7 +53,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
   <body class="bg-cream text-charcoal antialiased">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-forest focus:px-4 focus:py-2 focus:text-cream"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-navy focus:px-4 focus:py-2 focus:text-cream"
       >Skip to content</a
     >
     <Header />
@@ -61,5 +61,24 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Global scroll-reveal activation for the .reveal-up utility (global.css).
+      const revealEls = document.querySelectorAll<HTMLElement>('.reveal-up');
+      if (revealEls.length) {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                (entry.target as HTMLElement).classList.add('visible');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -36px 0px' }
+        );
+        revealEls.forEach((el) => revealObserver.observe(el));
+      }
+    </script>
   </body>
 </html>

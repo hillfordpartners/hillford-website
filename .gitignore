@@ -23,3 +23,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+.vercel
+
+# Figma API scratch data (design-pull tooling)
+.figma-cache/
