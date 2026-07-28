@@ -266,13 +266,13 @@ export const testimonials = [
     quote:
       'HillFord became a genuine extension of our practice — accurate, responsive and completely reliable through our busiest season.',
     author: 'Managing Partner',
-    company: 'CPA Firm (placeholder)',
+    company: 'CPA Firm',
   },
   {
     quote:
       'Outsourcing our bookkeeping to HillFord gave us clean books and real-time clarity. We finally trust our numbers.',
     author: 'Finance Director',
-    company: 'SME (placeholder)',
+    company: 'SME',
   },
 ];
 
