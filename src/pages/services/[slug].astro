@@ -12,7 +12,11 @@ export function getStaticPaths() {
 }
 
 const { service } = Astro.props;
-const others = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+
+// Rotate through the full service list starting after the current one, so
+// every page shows a different trio instead of always the same first 3.
+const currentIndex = services.findIndex((s) => s.slug === service.slug);
+const others = Array.from({ length: 3 }, (_, i) => services[(currentIndex + 1 + i) % services.length]);
 const featured = service.included.slice(0, 2);
 const rest = service.included.slice(2);
 
