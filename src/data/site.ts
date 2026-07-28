@@ -193,7 +193,7 @@ export const team: TeamMember[] = [
   {
     slug: 'sandhra-tom',
     name: 'CA Sandhra Tom',
-    designation: 'Chartered Accountant (ICAI)',
+    designation: 'Chartered Accountant',
     bio: 'Chartered Accountant with deep expertise in audit, assurance and financial reporting, including Big Four experience. Sandhra leads engagements with a focus on technical accuracy and rigorous standards.',
     initials: 'ST',
   },
@@ -208,7 +208,7 @@ export const team: TeamMember[] = [
     slug: 'neethu-jose',
     name: 'CA Neethu Jose',
     designation: 'Chartered Accountant',
-    bio: 'Chartered Accountant (qualified 2016) with expertise in audit, financial reporting, taxation and compliance, including EY experience. Neethu ensures engagements meet every regulatory expectation.',
+    bio: 'Chartered Accountant with expertise in audit, financial reporting, taxation and compliance, including EY experience. Neethu ensures engagements meet every regulatory expectation.',
     initials: 'NJ',
   },
 ];
