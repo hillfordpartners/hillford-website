@@ -2,7 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 import ContactCallbackBand from '../../components/ContactCallbackBand.astro';
-import { services } from '../../data/site';
+import { services, stats, softwarePartners } from '../../data/site';
+import { statIcons } from '../../data/serviceIcons';
 ---
 
 <BaseLayout
@@ -10,19 +11,39 @@ import { services } from '../../data/site';
   description="Outsourced accounting, bookkeeping, audit support, business advisory, payroll, invoicing and accounting software solutions."
 >
   <!-- ══════════════════════════════════════════════════════════
-       HERO  ·  Navy bg
+       HERO  ·  Navy bg, copy + trust stats
        ══════════════════════════════════════════════════════════ -->
   <section class="bg-navy text-cream">
-    <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-      <p class="mb-3 text-[0.6875rem] font-semibold uppercase tracking-widest text-brass">Our Services</p>
-      <h1 class="max-w-2xl font-serif text-3xl text-cream sm:text-4xl">
-        Comprehensive Financial Solutions from chartered accountants for Sustainable Business Growth
-      </h1>
-      <p class="mt-5 max-w-2xl text-[0.9375rem] leading-relaxed text-cream/70">
-        From accounting and bookkeeping to audit support, payroll, advisory, invoicing, and accounting software
-        solutions, HillFord delivers integrated financial services that enhance efficiency, ensure compliance,
-        safeguard confidentiality and data security, and empower confident business decisions.
-      </p>
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <div class="flex flex-wrap items-start justify-between gap-10">
+        <div class="max-w-2xl">
+          <p class="mb-3 text-[0.6875rem] font-semibold uppercase tracking-widest text-brass">Our Services</p>
+          <h1 class="font-serif text-3xl text-cream sm:text-4xl">
+            Comprehensive Financial Solutions from chartered accountants for Sustainable Business Growth
+          </h1>
+          <p class="mt-5 max-w-2xl text-[0.9375rem] leading-relaxed text-cream/70">
+            From accounting and bookkeeping to audit support, payroll, advisory, invoicing, and accounting software
+            solutions, HillFord delivers integrated financial services that enhance efficiency, ensure compliance,
+            safeguard confidentiality and data security, and empower confident business decisions.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-x-10 gap-y-6">
+          {stats.map((stat, i) => (
+            <div class="flex items-center gap-3">
+              <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-brass">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d={statIcons[i % statIcons.length]} stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-serif text-xl font-semibold text-cream">{stat.value}{stat.suffix}</p>
+                <p class="text-xs text-cream/55">{stat.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -31,8 +52,22 @@ import { services } from '../../data/site';
        ══════════════════════════════════════════════════════════ -->
   <section class="border-t border-navy/10 bg-white">
     <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PLATFORMS STRIP  ·  Mist bg
+       ══════════════════════════════════════════════════════════ -->
+  <section class="border-t border-navy/10 bg-mist">
+    <div class="mx-auto max-w-7xl px-4 py-14 text-center sm:px-6 lg:px-8">
+      <p class="text-[0.6875rem] font-semibold uppercase tracking-widest text-stone">We work across the platforms you already use</p>
+      <div class="mt-7 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+        {softwarePartners.map((name) => (
+          <span class="text-base font-semibold text-stone/70 transition-colors hover:text-brass">{name}</span>
+        ))}
       </div>
     </div>
   </section>

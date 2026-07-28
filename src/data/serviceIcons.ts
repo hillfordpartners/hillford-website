@@ -21,3 +21,11 @@ export const defaultServiceIcon = 'M4 19h16M7 16V8m5 8V5m5 11v-6';
 export function iconFor(slug: string): string {
   return serviceIcons[slug] ?? defaultServiceIcon;
 }
+
+// Icon paths for the trust-stats grid shown on service page heroes.
+export const statIcons = [
+  'M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m6-4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm6 0a4 4 0 1 0-3.75-5.5',
+  'M12 6.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11zM12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07-1.41 1.41M6.34 17.66l-1.41 1.41m12.14 0-1.41-1.41M6.34 6.34 4.93 4.93',
+  'M8 7V3m8 4V3M4 11h16M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z',
+  'M9 12l2 2 4-4m5 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
+];
