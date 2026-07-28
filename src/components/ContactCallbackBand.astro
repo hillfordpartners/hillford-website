@@ -23,6 +23,7 @@ import { site } from '../data/site';
       <form
         class="rounded-2xl border border-navy/10 bg-mist p-7"
         data-callback-form
+        data-formspree-id={site.formspreeId}
         novalidate
       >
         <div class="grid gap-4 sm:grid-cols-2">
@@ -63,6 +64,9 @@ import { site } from '../data/site';
           />
         </div>
 
+        <!-- Honeypot (spam protection) -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
         <button
           type="submit"
           class="mt-5 w-full rounded-full bg-brass px-7 py-3.5 text-sm font-semibold text-navy transition-all duration-300 hover:bg-brass-light"
@@ -76,15 +80,41 @@ import { site } from '../data/site';
   </div>
 </section>
 
-<script>
-  document.querySelectorAll<HTMLFormElement>('[data-callback-form]').forEach((form) => {
-    const note = form.querySelector<HTMLParagraphElement>('[data-form-note]');
-    form.addEventListener('submit', (e) => {
+<script define:vars={{ email: site.email }}>
+  document.querySelectorAll('[data-callback-form]').forEach((form) => {
+    const note = form.querySelector('[data-form-note]');
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const id = form.dataset.formspreeId;
+      if (id && id !== 'PLACEHOLDER') {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+        try {
+          const response = await fetch(`https://formspree.io/f/${id}`, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json' },
+          });
+          if (response.ok) {
+            window.location.href = '/thank-you';
+            return;
+          }
+          throw new Error('Formspree submission failed');
+        } catch {
+          if (note) {
+            note.textContent = `Something went wrong sending your details — please email us directly at ${email} in the meantime.`;
+            note.classList.remove('hidden');
+          }
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
+        return;
+      }
+
       if (note) {
-        note.textContent =
-          'Thanks! Online enquiries launch shortly — please email us in the meantime and we’ll respond within one business day.';
+        note.textContent = `Thanks! Online enquiries launch shortly — please email us at ${email} in the meantime and we’ll respond within one business day.`;
         note.classList.remove('hidden');
       }
       form.reset();
