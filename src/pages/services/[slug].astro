@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactCallbackBand from '../../components/ContactCallbackBand.astro';
 import { services, stats } from '../../data/site';
-import { iconFor, statIcons } from '../../data/serviceIcons';
+import { iconFor, serviceIcons, statIcons } from '../../data/serviceIcons';
 
 export function getStaticPaths() {
   return services.map((service) => ({
@@ -15,6 +15,13 @@ const { service } = Astro.props;
 const others = services.filter((s) => s.slug !== service.slug).slice(0, 3);
 const featured = service.included.slice(0, 2);
 const rest = service.included.slice(2);
+
+// Give the two featured blocks distinct icons instead of repeating the
+// service's own icon twice — pair it with the next icon in the shared pool.
+const iconPool = Object.values(serviceIcons);
+const primaryIcon = iconFor(service.slug);
+const primaryIndex = iconPool.indexOf(primaryIcon);
+const featuredIcons = [primaryIcon, iconPool[(primaryIndex + 1) % iconPool.length]];
 ---
 
 <BaseLayout title={service.title} description={service.summary}>
@@ -70,9 +77,12 @@ const rest = service.included.slice(2);
         {featured.map((item, i) => (
           <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div class:list={[i % 2 === 1 && 'lg:order-2']}>
-              <div class="mx-auto flex h-44 w-44 items-center justify-center rounded-3xl bg-brass/10 lg:mx-0">
-                <svg class="h-16 w-16 text-brass" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d={iconFor(service.slug)} stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+              <div class:list={[
+                'mx-auto flex h-44 w-44 items-center justify-center rounded-3xl lg:mx-0',
+                i % 2 === 0 ? 'bg-brass/10' : 'bg-navy/[0.06]',
+              ]}>
+                <svg class:list={['h-16 w-16', i % 2 === 0 ? 'text-brass' : 'text-navy']} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d={featuredIcons[i]} stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </div>
             </div>
