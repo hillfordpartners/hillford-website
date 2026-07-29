@@ -19,6 +19,7 @@ const {
 const fullTitle = `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
 ---
 
 <!doctype html>
@@ -49,6 +50,16 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Plausible — privacy-respecting, cookieless analytics -->
+    {plausibleDomain && (
+      <>
+        <script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.js"></script>
+        <script>
+          window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
+        </script>
+      </>
+    )}
   </head>
   <body class="bg-cream text-charcoal antialiased">
     <a

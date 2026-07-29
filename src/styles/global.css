@@ -7,6 +7,9 @@
   /* Core brand palette */
   --color-brass:         #d4a84b;
   --color-brass-light:   #e3c179;
+  /* WCAG AA-safe variant of brass for text on white/light backgrounds
+     (full brass is ~2.2:1 on white, fails AA; this is ~4.7:1). */
+  --color-brass-dark:    #8a6a2b;
   --color-cream:         #f8f7f4;
   --color-charcoal:      #1c1c1c;
   --color-stone:         #6b6b66;

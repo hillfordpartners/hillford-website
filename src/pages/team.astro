@@ -27,15 +27,15 @@ import { team } from '../data/site';
 
       <div class="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2">
         {team.map((member, i) => (
-          <div class="reveal-up flex" style={`animation-delay: ${i * 90}ms`}>
+          <div class="reveal-up flex flex-col sm:flex-row" style={`animation-delay: ${i * 90}ms`}>
             <!-- Photo panel (initials placeholder until real photos are supplied) -->
-            <div class="flex aspect-[4/5] w-2/5 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-navy-deep to-navy">
+            <div class="flex aspect-[16/9] w-full shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-navy-deep to-navy sm:aspect-[4/5] sm:w-2/5">
               <span class="font-serif text-6xl font-semibold text-brass/70" aria-hidden="true">{member.initials}</span>
             </div>
             <!-- Content card (overlaps the photo panel) -->
-            <div class="-ml-8 mt-8 flex-1 rounded-2xl bg-white p-6 text-charcoal shadow-xl">
+            <div class="-mt-8 rounded-2xl bg-white p-6 text-charcoal shadow-xl sm:-ml-8 sm:mt-8 sm:flex-1">
               <h3 class="font-serif text-lg text-navy">{member.name}</h3>
-              <p class="mt-1 text-[0.6875rem] font-semibold uppercase tracking-widest text-brass">{member.designation}</p>
+              <p class="mt-1 text-[0.6875rem] font-semibold uppercase tracking-widest text-brass-dark">{member.designation}</p>
               <p class="mt-3 text-sm leading-relaxed text-stone">{member.bio}</p>
             </div>
           </div>

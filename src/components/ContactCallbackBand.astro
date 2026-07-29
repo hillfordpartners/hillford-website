@@ -6,7 +6,7 @@ import { site } from '../data/site';
   <div class="mx-auto grid max-w-7xl gap-12 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:items-start lg:gap-16 lg:px-8">
     <!-- Left copy -->
     <div class="reveal-up">
-      <p class="mb-4 text-[0.6875rem] font-semibold uppercase tracking-widest text-brass">Get in touch</p>
+      <p class="mb-4 text-[0.6875rem] font-semibold uppercase tracking-widest text-brass-dark">Get in touch</p>
       <h2 class="font-serif text-3xl text-navy sm:text-4xl">Get a call back</h2>
       <p class="mt-5 max-w-md text-[0.9375rem] leading-relaxed text-stone">
         Leave your details and a member of our team will reach out to understand your needs and outline how HillFord
@@ -53,7 +53,7 @@ import { site } from '../data/site';
 
         <div class="mt-4 flex flex-col gap-1.5">
           <label for="cb-phone" class="text-xs font-medium text-stone">
-            Phone <span class="text-stone/60">(optional)</span>
+            Phone <span class="text-stone">(optional)</span>
           </label>
           <input
             id="cb-phone"
@@ -74,7 +74,7 @@ import { site } from '../data/site';
           Request a call back
         </button>
 
-        <p data-form-note class="mt-4 hidden text-sm text-brass"></p>
+        <p data-form-note class="mt-4 hidden text-sm text-brass-dark"></p>
       </form>
     </div>
   </div>
@@ -98,6 +98,7 @@ import { site } from '../data/site';
             headers: { Accept: 'application/json' },
           });
           if (response.ok) {
+            if (window.plausible) window.plausible('Enquiry Submitted');
             window.location.href = '/thank-you';
             return;
           }

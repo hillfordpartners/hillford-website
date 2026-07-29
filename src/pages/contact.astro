@@ -83,17 +83,17 @@ import { site, softwarePartners } from '../data/site';
           >
             <div class="grid gap-5 sm:grid-cols-2">
               <div>
-                <label for="name" class="mb-1 block text-sm font-medium text-charcoal">Name <span class="text-brass">*</span></label>
+                <label for="name" class="mb-1 block text-sm font-medium text-charcoal">Name <span class="text-brass-dark">*</span></label>
                 <input id="name" name="name" type="text" required class="w-full rounded-lg border border-navy/15 bg-white px-4 py-3 focus:border-brass focus:outline-none" />
               </div>
               <div>
-                <label for="email" class="mb-1 block text-sm font-medium text-charcoal">Email <span class="text-brass">*</span></label>
+                <label for="email" class="mb-1 block text-sm font-medium text-charcoal">Email <span class="text-brass-dark">*</span></label>
                 <input id="email" name="email" type="email" required class="w-full rounded-lg border border-navy/15 bg-white px-4 py-3 focus:border-brass focus:outline-none" />
               </div>
             </div>
             <div class="grid gap-5 sm:grid-cols-2">
               <div>
-                <label for="phone" class="mb-1 block text-sm font-medium text-charcoal">Phone <span class="text-stone/60">(optional)</span></label>
+                <label for="phone" class="mb-1 block text-sm font-medium text-charcoal">Phone <span class="text-stone">(optional)</span></label>
                 <input id="phone" name="phone" type="tel" class="w-full rounded-lg border border-navy/15 bg-white px-4 py-3 focus:border-brass focus:outline-none" />
               </div>
               <div>
@@ -110,14 +110,14 @@ import { site, softwarePartners } from '../data/site';
               </select>
             </div>
             <div>
-              <label for="message" class="mb-1 block text-sm font-medium text-charcoal">Message <span class="text-brass">*</span></label>
+              <label for="message" class="mb-1 block text-sm font-medium text-charcoal">Message <span class="text-brass-dark">*</span></label>
               <textarea id="message" name="message" rows="5" required class="w-full rounded-lg border border-navy/15 bg-white px-4 py-3 focus:border-brass focus:outline-none"></textarea>
             </div>
             <!-- Honeypot (spam protection) -->
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <label class="flex items-start gap-3 text-sm text-stone">
               <input type="checkbox" name="consent" required class="mt-1 h-4 w-4 rounded border-navy/25" />
-              <span>I consent to HillFord Partners contacting me about my enquiry. <span class="text-brass">*</span></span>
+              <span>I consent to HillFord Partners contacting me about my enquiry. <span class="text-brass-dark">*</span></span>
             </label>
             <button type="submit" class="justify-self-start rounded-full bg-brass px-7 py-3 font-semibold text-navy transition-colors hover:bg-brass-light">
               Send enquiry
@@ -137,7 +137,7 @@ import { site, softwarePartners } from '../data/site';
       <p class="text-[0.6875rem] font-semibold uppercase tracking-widest text-stone">Platforms we work across</p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
         {softwarePartners.map((name) => (
-          <span class="text-base font-semibold text-stone/70 transition-colors hover:text-brass">{name}</span>
+          <span class="text-base font-semibold text-stone transition-colors hover:text-brass-dark">{name}</span>
         ))}
       </div>
     </div>
@@ -163,6 +163,7 @@ import { site, softwarePartners } from '../data/site';
             headers: { Accept: 'application/json' },
           });
           if (response.ok) {
+            if (window.plausible) window.plausible('Enquiry Submitted');
             window.location.href = '/thank-you';
             return;
           }
