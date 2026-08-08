@@ -1,8 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { site, softwarePartners } from '../data/site';
-
-const hasCalendly = site.calendlyUrl && site.calendlyUrl !== '#';
+import { site, softwarePartners, hasCalendlyLink } from '../data/site';
 ---
 
 <BaseLayout
@@ -66,12 +64,12 @@ const hasCalendly = site.calendlyUrl && site.calendlyUrl !== '#';
           </dl>
 
           <a
-            href={hasCalendly ? site.calendlyUrl : '#enquiry-form'}
-            target={hasCalendly ? '_blank' : undefined}
-            rel={hasCalendly ? 'noopener noreferrer' : undefined}
+            href={hasCalendlyLink ? site.calendlyUrl : '#enquiry-form'}
+            target={hasCalendlyLink ? '_blank' : undefined}
+            rel={hasCalendlyLink ? 'noopener noreferrer' : undefined}
             class="relative mt-10 inline-flex items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-brass-light"
           >
-            {hasCalendly ? 'Book a Consultation' : 'Send an Enquiry'}
+            {hasCalendlyLink ? 'Book a Consultation' : 'Send an Enquiry'}
           </a>
         </div>
 

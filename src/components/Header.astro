@@ -1,5 +1,5 @@
 ---
-import { services, site } from '../data/site';
+import { services, site, hasCalendlyLink } from '../data/site';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -94,7 +94,9 @@ const isActive = (href: string) =>
     <!-- CTA + mobile toggle -->
     <div class="flex items-center gap-2">
       <a
-        href="/contact"
+        href={hasCalendlyLink ? site.calendlyUrl : '/contact'}
+        target={hasCalendlyLink ? '_blank' : undefined}
+        rel={hasCalendlyLink ? 'noopener noreferrer' : undefined}
         class="hidden rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-brass-light hover:shadow-[0_2px_16px_rgba(212,168,75,0.35)] sm:inline-block"
       >
         Book a Consultation
@@ -144,7 +146,12 @@ const isActive = (href: string) =>
         ))
       }
       <li class="pt-2">
-        <a href="/contact" class="block rounded-full bg-brass px-5 py-2.5 text-center text-sm font-semibold text-navy hover:bg-brass-light">
+        <a
+          href={hasCalendlyLink ? site.calendlyUrl : '/contact'}
+          target={hasCalendlyLink ? '_blank' : undefined}
+          rel={hasCalendlyLink ? 'noopener noreferrer' : undefined}
+          class="block rounded-full bg-brass px-5 py-2.5 text-center text-sm font-semibold text-navy hover:bg-brass-light"
+        >
           Book a Consultation
         </a>
       </li>

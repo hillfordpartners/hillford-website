@@ -10,6 +10,8 @@ import {
   valuePillars,
   softwarePartners,
   whyOutsource,
+  site,
+  hasCalendlyLink,
 } from '../data/site';
 
 const featuredServices = services.slice(0, 4);
@@ -58,7 +60,9 @@ const posts = (await getCollection('blog'))
 
           <div class="reveal-up mt-10 flex flex-wrap items-center gap-6" style="animation-delay: 240ms">
             <a
-              href="/contact"
+              href={hasCalendlyLink ? site.calendlyUrl : '/contact'}
+              target={hasCalendlyLink ? '_blank' : undefined}
+              rel={hasCalendlyLink ? 'noopener noreferrer' : undefined}
               class="group inline-flex items-center gap-2 rounded-full bg-brass px-8 py-4 text-sm font-semibold text-navy transition-all duration-300 hover:bg-brass-light"
             >
               Book a Consultation

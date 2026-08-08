@@ -1,4 +1,6 @@
 ---
+import { site, hasCalendlyLink } from '../data/site';
+
 interface Props {
   heading?: string;
   body?: string;
@@ -15,7 +17,9 @@ const {
     <p class="mx-auto mt-4 max-w-2xl text-cream/80">{body}</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4">
       <a
-        href="/contact"
+        href={hasCalendlyLink ? site.calendlyUrl : '/contact'}
+        target={hasCalendlyLink ? '_blank' : undefined}
+        rel={hasCalendlyLink ? 'noopener noreferrer' : undefined}
         class="rounded-full bg-brass px-7 py-3 font-semibold text-navy transition-colors hover:bg-brass-light"
       >
         Book a Consultation

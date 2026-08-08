@@ -14,6 +14,11 @@ export const site = {
   responseTime: 'We respond within 1 business day.',
 };
 
+// Whether a real Calendly link is configured (vs. the '#' placeholder).
+// "Book a Consultation" CTAs link straight to Calendly when true, and fall
+// back to the contact page/form otherwise.
+export const hasCalendlyLink = Boolean(site.calendlyUrl) && site.calendlyUrl !== '#';
+
 export interface Service {
   slug: string;
   title: string;

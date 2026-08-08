@@ -1,5 +1,5 @@
 ---
-import { services, site } from '../data/site';
+import { services, site, hasCalendlyLink } from '../data/site';
 const year = new Date().getFullYear();
 ---
 
@@ -52,7 +52,9 @@ const year = new Date().getFullYear();
           <li>{site.responseTime}</li>
         </ul>
         <a
-          href="/contact"
+          href={hasCalendlyLink ? site.calendlyUrl : '/contact'}
+          target={hasCalendlyLink ? '_blank' : undefined}
+          rel={hasCalendlyLink ? 'noopener noreferrer' : undefined}
           class="mt-4 inline-block rounded-full bg-brass px-4 py-2 text-sm font-semibold text-navy transition-colors hover:bg-brass-light"
         >
           Book a Consultation
