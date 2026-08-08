@@ -84,8 +84,8 @@ const posts = (await getCollection('blog'))
         <!-- Right: hero image -->
         <div class="relative flex justify-center lg:col-span-5">
           <img
-            src="/images/HomeImg.webp"
-            alt="HillFord Partners — secure, data-driven finance and accounting services"
+            src="/images/home-accounting-workspace.webp"
+            alt="A modern accounting workspace with a laptop showing financial dashboards"
             width="727"
             height="415"
             loading="eager"
@@ -193,40 +193,110 @@ const posts = (await getCollection('blog'))
 
 
   <!-- ══════════════════════════════════════════════════════════
-       4. ADVANTAGE  ·  White bg, reasons list
+       4. ADVANTAGE  ·  White bg, reasons list + sticky crossfade image
        ══════════════════════════════════════════════════════════ -->
   <section class="border-t border-navy/10 bg-white">
-    <div class="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
-      <p class="reveal-up mb-4 text-[0.6875rem] font-semibold uppercase tracking-widest text-brass-dark">The HillFord advantage</p>
-      <h2 class="reveal-up font-serif text-3xl text-navy sm:text-4xl">
-        Why outsource to&nbsp;<span class="text-brass-dark">HillFord</span>
-      </h2>
-      <p class="reveal-up mt-5 max-w-md text-[0.9375rem] leading-relaxed text-stone">
-        We pair Big Four and multinational pedigree with a global delivery model — giving you senior expertise,
-        governance and confidentiality at a predictable cost.
-      </p>
-      <a href="/about" class="reveal-up mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-brass-dark transition-colors hover:text-navy">
-        About HillFord
-        <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </a>
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div class="grid gap-14 lg:grid-cols-2 lg:items-start">
+        <!-- Left: reasons -->
+        <div>
+          <p class="reveal-up mb-4 text-[0.6875rem] font-semibold uppercase tracking-widest text-brass-dark">The HillFord advantage</p>
+          <h2 class="reveal-up font-serif text-3xl text-navy sm:text-4xl">
+            Why outsource to&nbsp;<span class="text-brass-dark">HillFord</span>
+          </h2>
+          <p class="reveal-up mt-5 max-w-md text-[0.9375rem] leading-relaxed text-stone">
+            We pair Big Four and multinational pedigree with a global delivery model — giving you senior expertise,
+            governance and confidentiality at a predictable cost.
+          </p>
+          <a href="/about" class="reveal-up mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-brass-dark transition-colors hover:text-navy">
+            About HillFord
+            <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
 
-      <ul class="mt-10 grid gap-6 sm:grid-cols-2">
-        {whyOutsource.map((item, i) => (
-          <li class="reveal-up flex gap-4" style={`animation-delay: ${i * 80}ms`}>
-            <div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brass/12 font-serif text-xs font-semibold text-brass-dark">
-              {String(i + 1).padStart(2, '0')}
-            </div>
-            <div>
-              <h3 class="text-sm font-semibold text-navy">{item.title}</h3>
-              <p class="mt-1 text-sm leading-relaxed text-stone">{item.body}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+          <!-- Static image, mobile/tablet only (no sticky/crossfade below lg) -->
+          <img
+            src="/images/global-finance-collaboration.webp"
+            alt="Two finance professionals reviewing reports together during a video call"
+            width="900"
+            height="675"
+            loading="lazy"
+            decoding="async"
+            class="reveal-up mt-10 w-full rounded-2xl object-cover shadow-lg lg:hidden"
+          />
+
+          <ul class="mt-10 space-y-8">
+            {whyOutsource.map((item, i) => (
+              <li class="reveal-up relative flex gap-4" style={`animation-delay: ${i * 80}ms`}>
+                {i === 2 && <span data-crossfade-trigger class="absolute inset-x-0 top-0 h-px" aria-hidden="true"></span>}
+                <div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brass/12 font-serif text-xs font-semibold text-brass-dark">
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-navy">{item.title}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-stone">{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Right: sticky crossfade image panel, desktop only -->
+        <div class="hidden lg:block">
+          <div data-crossfade-panel class="sticky top-28 h-[520px] overflow-hidden rounded-2xl shadow-xl">
+            <img
+              src="/images/global-finance-collaboration.webp"
+              alt="Two finance professionals reviewing reports together during a video call"
+              width="900"
+              height="675"
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 h-full w-full object-cover"
+            />
+            <img
+              src="/images/accounting-review-process.webp"
+              alt="A structured accounting review in progress, with checklists and financial reports"
+              width="900"
+              height="506"
+              loading="lazy"
+              decoding="async"
+              data-crossfade-image
+              class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 ease-out"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <script>
+    // ── Sticky image crossfade for the "Why outsource" section ────────────────
+    // Uses a throttled scroll listener rather than IntersectionObserver: this
+    // needs continuous "which side of center is the trigger on" tracking as
+    // the user scrolls back and forth, not a one-shot visibility check.
+    const panel = document.querySelector<HTMLElement>('[data-crossfade-panel]');
+    const trigger = document.querySelector<HTMLElement>('[data-crossfade-trigger]');
+    const secondImage = panel?.querySelector<HTMLElement>('[data-crossfade-image]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (panel && trigger && secondImage && !reduceMotion) {
+      let ticking = false;
+      const updateCrossfade = () => {
+        const pastCenter = trigger.getBoundingClientRect().top < window.innerHeight / 2;
+        secondImage.style.opacity = pastCenter ? '1' : '0';
+        ticking = false;
+      };
+      const onScroll = () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateCrossfade);
+        }
+      };
+      updateCrossfade();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  </script>
 
 
   <!-- ══════════════════════════════════════════════════════════
