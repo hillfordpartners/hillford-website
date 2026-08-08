@@ -53,6 +53,10 @@
 
 /* ─────────────────────────────────────────────────────
    Scroll-reveal system
+   Content is visible by default so it never depends on JS to
+   render. The .js class (set by an early inline script in
+   BaseLayout) opts browsers with JS enabled into the hidden
+   starting state that the IntersectionObserver then reveals.
    ───────────────────────────────────────────────────── */
 @keyframes fade-up-in {
   from {
@@ -65,7 +69,7 @@
   }
 }
 
-.reveal-up {
+.js .reveal-up {
   opacity: 0;
   transform: translateY(24px);
 }
@@ -80,11 +84,23 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.reveal {
+.js .reveal {
   opacity: 0;
 }
 .reveal.is-visible {
   animation: fade-up 0.6s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-up,
+  .js .reveal,
+  .reveal-up.visible,
+  .reveal.is-visible,
+  .animate-float {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ─────────────────────────────────────────────────────

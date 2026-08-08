@@ -18,6 +18,11 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => !page.endsWith('/thank-you/') && !page.endsWith('/thank-you'),
+    }),
+  ],
   adapter: cloudflare()
 });

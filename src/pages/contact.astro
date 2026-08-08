@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, softwarePartners } from '../data/site';
+
+const hasCalendly = site.calendlyUrl && site.calendlyUrl !== '#';
 ---
 
 <BaseLayout
@@ -64,16 +66,19 @@ import { site, softwarePartners } from '../data/site';
           </dl>
 
           <a
-            href={site.calendlyUrl}
+            href={hasCalendly ? site.calendlyUrl : '#enquiry-form'}
+            target={hasCalendly ? '_blank' : undefined}
+            rel={hasCalendly ? 'noopener noreferrer' : undefined}
             class="relative mt-10 inline-flex items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-brass-light"
           >
-            Book a Consultation
+            {hasCalendly ? 'Book a Consultation' : 'Send an Enquiry'}
           </a>
         </div>
 
         <!-- Form -->
         <div class="bg-white p-8 lg:col-span-3 lg:p-10">
           <form
+            id="enquiry-form"
             class="grid gap-5"
             data-enquiry-form
             action="#"

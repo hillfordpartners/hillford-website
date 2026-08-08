@@ -232,15 +232,6 @@ export const valuePillars = [
   },
 ];
 
-// Years Combined Experience confirmed by client. Other figures still
-// placeholder — TODO: confirm with client before launch.
-export const stats = [
-  { value: 50, suffix: '+', label: 'Years Combined Experience' },
-  { value: 8, suffix: '', label: 'Chartered Accountants' },
-  { value: 50, suffix: '+', label: 'Industries Served' },
-  { value: 1000, suffix: '+', label: 'Client Engagements' },
-];
-
 export const whyOutsource = [
   {
     title: 'Focus on growth',
@@ -257,22 +248,6 @@ export const whyOutsource = [
   {
     title: 'Trusted data stewardship',
     body: 'Governance and confidentiality built into every engagement.',
-  },
-];
-
-// Placeholder testimonials — TODO: replace with real client quotes.
-export const testimonials = [
-  {
-    quote:
-      'HillFord became a genuine extension of our practice — accurate, responsive and completely reliable through our busiest season.',
-    author: 'Managing Partner',
-    company: 'CPA Firm',
-  },
-  {
-    quote:
-      'Outsourcing our bookkeeping to HillFord gave us clean books and real-time clarity. We finally trust our numbers.',
-    author: 'Finance Director',
-    company: 'SME',
   },
 ];
 
